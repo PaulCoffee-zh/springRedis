@@ -20,7 +20,7 @@ import org.springframework.data.redis.core.ZSetOperations;
 public class App {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
+	
 	public static void main(String[] args) throws InterruptedException {
 		// 获取上下文
 		ApplicationContext ctx = SpringApplication.run(App.class, args);
@@ -67,7 +67,9 @@ public class App {
 		zsetOps.add("redisZset", "China", 0.1);
 		zsetOps.add("redisZset", "American", 0.13);
 		zsetOps.add("redisZset", "Indea", 0.4);
-		zsetOps.add("redisZset", "Kreans", 0.3);
+		zsetOps.add("redisZset", "Krean", 0.3);
+		zsetOps.add("redisZset", "Germany", 0.6);
+		zsetOps.add("redisZset", "French", 0.7);
 		LOGGER.info("redis set add result : " + zsetOps.range("redisZset", 0, 10));
 		
 		System.out.println("============================渠道信息发送==================================");
