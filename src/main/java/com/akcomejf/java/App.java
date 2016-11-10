@@ -7,8 +7,11 @@ import java.util.concurrent.CountDownLatch;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -23,12 +26,23 @@ public class App {
 		
 //		RedisTemplate<Object, Object> template = ctx.getBean(RedisTemplate.class);
 //		ListOperations<Object, Object> list = template.opsForList();
-//		Student stu = new Student(12L,"leesun",12);
+		Student stu = new Student(12L,"leesun",12);
 //		list.leftPush("student", stu);
 //		System.out.println(list.range("student", 0, 12));
 		
 		// 找到RedisTemplate
 		StringRedisTemplate stringRedisTemplate = ctx.getBean(StringRedisTemplate.class);
+		
+		stringRedisTemplate.execute(new RedisCallback<Object>() {
+
+			@Override
+			public Object doInRedis(RedisConnection connection) throws DataAccessException {
+				connection.set(stringRedisTemplate.getStringSerializer().serialize("user.uid." + "123"),  
+						stringRedisTemplate.getStringSerializer().serialize("sxq"));  
+				return null;
+			}  
+			
+		});
 		System.out.println("\n============================String 操作==================================");
 		// String 操作
 		ValueOperations<String, String> strOps = stringRedisTemplate.opsForValue();

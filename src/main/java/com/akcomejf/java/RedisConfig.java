@@ -45,7 +45,7 @@ public class RedisConfig<DefaultZSetOperations> {
 	@Bean
 	JedisConnectionFactory factory(){
 		JedisConnectionFactory factory = new JedisConnectionFactory();
-		factory.setHostName("192.168.82.39");
+		factory.setHostName("127.0.0.1");
 		factory.setPort(6379);
 		return factory;
 	}
