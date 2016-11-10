@@ -8,9 +8,11 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
+import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 
 @Configuration
-public class RedisConfig {
+@EnableRedisRepositories
+public class RedisConfig<DefaultZSetOperations> {
 	@Bean
 	RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
 			MessageListenerAdapter listenerAdapter) {
@@ -49,8 +51,16 @@ public class RedisConfig {
 	}
 
 	@Bean
-	StringRedisTemplate template(RedisConnectionFactory connectionFactory) {
+	StringRedisTemplate stringTemplate(RedisConnectionFactory connectionFactory) {
 		return new StringRedisTemplate(connectionFactory);
 	}
+	
+//	@Bean
+//	RedisTemplate redisTemplate(RedisConnectionFactory connectionFactory){
+//		RedisTemplate redisTemplate = new RedisTemplate();
+//		redisTemplate.setConnectionFactory(connectionFactory);
+//		return redisTemplate;
+//	}
+	
 	
 }

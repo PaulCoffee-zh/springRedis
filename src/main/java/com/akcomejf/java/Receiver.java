@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Receiver {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
 
     private CountDownLatch latch;
 
@@ -17,7 +16,7 @@ public class Receiver {
     }
 
     public void receiveMessage(String message) {
-        LOGGER.info("Received <" + message + ">");
+    	System.out.println("Received <" + message + ">");
         latch.countDown();
     }
 }
