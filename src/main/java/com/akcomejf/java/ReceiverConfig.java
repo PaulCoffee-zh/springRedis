@@ -15,7 +15,7 @@ public class ReceiverConfig {
 
 	@Bean
 	CountDownLatch latch() {
-		return new CountDownLatch(1);
+		return new CountDownLatch(10);
 	}
 	
 }

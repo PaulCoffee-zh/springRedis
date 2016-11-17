@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
@@ -23,7 +24,12 @@ public class RedisConfig<DefaultZSetOperations> {
 
 		return container;
 	}
-
+//	@Bean  
+//    public RedisTemplate redisTemplate(RedisConnectionFactory cf) {  
+//        RedisTemplate redisTemplate = new RedisTemplate();  
+//        redisTemplate.setConnectionFactory(cf);  
+//        return redisTemplate;  
+//    }  
 	/**
 	 * 消息监听适配器
 	 * @param receiver 委托对象（指定执行方法）
@@ -45,7 +51,7 @@ public class RedisConfig<DefaultZSetOperations> {
 	@Bean
 	JedisConnectionFactory factory(){
 		JedisConnectionFactory factory = new JedisConnectionFactory();
-		factory.setHostName("127.0.0.1");
+		factory.setHostName("192.168.82.252");
 		factory.setPort(6379);
 		return factory;
 	}

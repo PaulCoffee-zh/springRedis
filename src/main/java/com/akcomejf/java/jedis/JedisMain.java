@@ -38,9 +38,9 @@ public class JedisMain {
 	public static void main(String[] args) {
 		Jedis jedis = new Jedis("192.168.82.252", 6379);
 		// 集群模式
-		clusterOp();
+//		clusterOp();
 		// 单机事务
-		redisTranstion(jedis);
+//		redisTranstion(jedis);
 		// 批量操作
 		PipelineOp(jedis);
 		//发布订阅监听

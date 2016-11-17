@@ -33,16 +33,7 @@ public class App {
 		// 找到RedisTemplate
 		StringRedisTemplate stringRedisTemplate = ctx.getBean(StringRedisTemplate.class);
 		
-		stringRedisTemplate.execute(new RedisCallback<Object>() {
 
-			@Override
-			public Object doInRedis(RedisConnection connection) throws DataAccessException {
-				connection.set(stringRedisTemplate.getStringSerializer().serialize("user.uid." + "123"),  
-						stringRedisTemplate.getStringSerializer().serialize("sxq"));  
-				return null;
-			}  
-			
-		});
 		System.out.println("\n============================String 操作==================================");
 		// String 操作
 		ValueOperations<String, String> strOps = stringRedisTemplate.opsForValue();
@@ -78,6 +69,7 @@ public class App {
 		setOps.add("redisSet", "lenovo");
 		System.out.println("redis set add result : " + setOps.members("redisSet"));
 
+		
 		System.out.println("\n============================zset 操作==================================");
 		ZSetOperations<String, String> zsetOps = stringRedisTemplate.opsForZSet();
 		zsetOps.add("redisZset", "China", 0.1);
